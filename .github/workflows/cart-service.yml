@@ -40,5 +40,5 @@ jobs:
         with:
           file: 'deploy/build/Dockerfile'
           push: true
-          tags: ${{env.IMAGE_NAME}}:${{env.IMAGE_TAG}}
+          tags: ghcr.io/pakuwa/${{env.IMAGE_NAME}}:${{env.IMAGE_TAG}}
           build-args: APP_RELATIVE_PATH=${{env.APP_RELATIVE_PATH}}
