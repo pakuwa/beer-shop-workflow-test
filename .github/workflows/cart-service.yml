@@ -37,7 +37,7 @@ jobs:
         run: |
           echo ${{env.IMAGE_NAME}}
           echo ${{env.IMAGE_TAG}}
-          echo ${{env.APP_RELATIVE_PATH}}
+          echo ${{env.IMAGE_NAME}} | rev | cut -d'-' -f2-  | rev
 #        uses: docker/build-push-action@v4
 #        with:
 #          file: 'deploy/build/Dockerfile'
