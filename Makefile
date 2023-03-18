@@ -12,3 +12,9 @@ wire:
 # generate proto
 proto:
 	find app -type d -depth 2 -print | xargs -L 1 bash -c 'cd "$$0" && pwd && $(MAKE) proto'
+
+.PHONY: tagthenpush
+tagthenpush:
+	git tag $(filter-out $@,$(MAKECMDGOALS))
+	git push origin	$(filter-out $@,$(MAKECMDGOALS))
+
