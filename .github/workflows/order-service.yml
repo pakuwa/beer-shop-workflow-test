@@ -3,7 +3,7 @@ name: order-service
 on:
   push:
     tags:
-      - payment-service-*
+      - order-service-*
 
 env:
   SECRET_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
