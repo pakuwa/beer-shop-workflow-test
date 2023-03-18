@@ -31,10 +31,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: PrepareReg Names
+      - name: Prepare Image Name And Tag
         id: read-docker-image-identifiers
         run: |
-          echo ${{ steps.extract_version_step.outputs.tag }} | tr '[:upper:]' '[:lower:]'
+          echo ${{ steps.extract_version_step.outputs.tag }} | rev | cut -d'-' -f2-  | rev
+          echo ${{ steps.extract_version_step.outputs.tag }} | rev | cut -d"-" -f1  | rev
 #          echo VERSION_TAG=$(echo ${{ steps.extract_version_step.outputs.version_tag }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
 #      - uses: ./.github/actions
 #        with:
