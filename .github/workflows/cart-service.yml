@@ -8,10 +8,12 @@ on:
 jobs:
   cart-service:
     runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: 'deploy/build'
+    defaults:
+      run:
+        working-directory: 'deploy/build'
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
       - name: Extract Version
         id: extract_version_step
         run: |
