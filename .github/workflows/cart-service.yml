@@ -9,4 +9,6 @@ jobs:
   build-docker-image:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
       - uses: ./.github/actions/build-image-action
