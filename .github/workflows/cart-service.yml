@@ -5,6 +5,9 @@ on:
     tags:
       - cart-service-*
 
+env:
+  SECRET_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   build-docker-image:
     runs-on: ubuntu-latest
@@ -12,3 +15,5 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
       - uses: ./.github/actions
+        with:
+          secret_github_token: ${{ env.SECRET_GITHUB_TOKEN }}

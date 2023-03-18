@@ -1,5 +1,9 @@
 name: Build
 description: Build app image
+inputs:
+  secret_github_token:
+    description: github token
+    required: true
 runs:
   using: "composite"
   steps:
@@ -24,7 +28,7 @@ runs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ inputs.secret_github_token }}
     - name: Prepare Docker Build Env
       shell: bash
       run: |
