@@ -36,7 +36,6 @@ jobs:
         run: |
           echo APP_RELATIVE_PATH=$(echo "$(echo ${{env.IMAGE_NAME}} | rev | cut -d'-' -f2-  | rev)/$(echo ${{env.IMAGE_NAME}} | rev | cut -d"-" -f1  | rev)") >> $GITHUB_ENV
       - name: Build and push
-        run: |
         uses: docker/build-push-action@v4
         with:
           file: 'deploy/build/Dockerfile'
