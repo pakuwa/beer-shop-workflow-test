@@ -8,9 +8,9 @@ on:
 jobs:
   cart-service:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: 'deploy/build'
+#    defaults:
+#      run:
+#        working-directory: 'deploy/build'
     steps:
       - name: Extract Version
         id: version_step
