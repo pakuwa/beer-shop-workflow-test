@@ -34,9 +34,13 @@ jobs:
           echo IMAGE_TAG=$(echo ${{ steps.extract_version_step.outputs.tag }} | rev | cut -d"-" -f1  | rev) >> $GITHUB_ENV
           echo APP_RELATIVE_PATH=$(echo "$(echo ${{env.IMAGE_NAME}} | rev | cut -d'-' -f2-  | rev)/$(echo ${{env.IMAGE_NAME}} | rev | cut -d"-" -f1  | rev)") >> $GITHUB_ENV
       - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          file: 'deploy/build/Dockerfile'
-          push: true
-          tags: ${{env.IMAGE_NAME}}:${{env.IMAGE_TAG}}
-          build-args: ${{env.APP_RELATIVE_PATH}}
+        run: |
+          echo ${{env.IMAGE_NAME}}
+          echo ${{env.IMAGE_TAG}}
+          echo ${{env.APP_RELATIVE_PATH}}
+#        uses: docker/build-push-action@v4
+#        with:
+#          file: 'deploy/build/Dockerfile'
+#          push: true
+#          tags: ${{env.IMAGE_NAME}}:${{env.IMAGE_TAG}}
+#          build-args: ${{env.APP_RELATIVE_PATH}}
