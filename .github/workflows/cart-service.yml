@@ -32,13 +32,12 @@ jobs:
         run: |
           echo IMAGE_NAME=$(echo ${{ steps.extract_version_step.outputs.tag }} | rev | cut -d'-' -f2-  | rev) >> $GITHUB_ENV
           echo IMAGE_TAG=$(echo ${{ steps.extract_version_step.outputs.tag }} | rev | cut -d"-" -f1  | rev) >> $GITHUB_ENV
-          echo ${{env.IMAGE_NAME}} | rev | cut -d'-' -f2-  | rev
-          echo ${{env.IMAGE_NAME}} | rev | cut -d"-" -f1  | rev
       - name: Build and push
         run: |
           echo ${{env.IMAGE_NAME}}
           echo ${{env.IMAGE_TAG}}
           echo ${{env.IMAGE_NAME}} | rev | cut -d'-' -f2-  | rev
+          echo ${{env.IMAGE_NAME}} | rev | cut -d"-" -f1  | rev
 #        uses: docker/build-push-action@v4
 #        with:
 #          file: 'deploy/build/Dockerfile'
