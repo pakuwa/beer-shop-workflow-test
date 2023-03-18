@@ -8,9 +8,6 @@ on:
 jobs:
   cart-service:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: 'deploy/build'
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -37,6 +34,7 @@ jobs:
           echo IMAGE_TAG=$(echo ${{ steps.extract_version_step.outputs.tag }} | rev | cut -d"-" -f1  | rev) >> $GITHUB_ENV
           echo APP_RELATIVE_PATH=$(echo "$(echo ${{env.IMAGE_NAME}} | rev | cut -d'-' -f2-  | rev)/$(echo ${{env.IMAGE_NAME}} | rev | cut -d"-" -f1  | rev)") >> $GITHUB_ENV
       - name: Build and push
+        working-directory: 'deploy/build'
         uses: docker/build-push-action@v4
         with:
           push: true
