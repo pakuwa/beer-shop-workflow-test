@@ -13,11 +13,12 @@ jobs:
 #        working-directory: 'deploy/build'
     steps:
       - name: Extract Version
-        id: version_step
-        run: echo "tag=${GITHUB_REF#refs/*/}" >> "$GITHUB_OUTPUT"
+        id: extract_version_step
+        run: |
+          echo "tag=${GITHUB_REF#refs/*/}" >> "$GITHUB_OUTPUT"
       - name: Print Version
         run: |
-          echo ${{ steps.version_step.outputs.tag }}
+          echo ${{ steps.extract_version_step.outputs.tag }}
 #      - uses: actions/checkout@v2
 #      - uses: docker/setup-qemu-action@v1
 #        with:
