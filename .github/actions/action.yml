@@ -4,10 +4,12 @@ runs:
   using: "composite"
   steps:
     - name: Extract Version
+      shell: bash
       id: extract_version_step
       run: |
         echo "tag=${GITHUB_REF#refs/*/}" >> "$GITHUB_OUTPUT"
     - name: Print Version
+      shell: bash
       run: |
         echo ${{ steps.extract_version_step.outputs.tag }}
     - name: Set up QEMU
@@ -24,10 +26,12 @@ runs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Prepare Docker Build Env
+      shell: bash
       run: |
         echo IMAGE_NAME=$(echo ${{ steps.extract_version_step.outputs.tag }} | rev | cut -d'-' -f2-  | rev) >> $GITHUB_ENV
         echo IMAGE_TAG=$(echo ${{ steps.extract_version_step.outputs.tag }} | rev | cut -d"-" -f1  | rev) >> $GITHUB_ENV
     - name: Prepare APP_RELATIVE_PATH
+      shell: bash
       run: |
         echo APP_RELATIVE_PATH=$(echo "$(echo ${{env.IMAGE_NAME}} | rev | cut -d'-' -f2-  | rev)/$(echo ${{env.IMAGE_NAME}} | rev | cut -d"-" -f1  | rev)") >> $GITHUB_ENV
     - name: Build and push
