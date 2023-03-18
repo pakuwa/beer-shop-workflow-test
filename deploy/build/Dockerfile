@@ -5,7 +5,7 @@ ARG APP_RELATIVE_PATH
 COPY . /src
 WORKDIR /src/app/${APP_RELATIVE_PATH}
 
-RUN GOPROXY=https://goproxy.cn make build
+RUN make build
 
 FROM debian:stable-slim
 
